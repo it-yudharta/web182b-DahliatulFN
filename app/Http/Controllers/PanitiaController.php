@@ -24,9 +24,15 @@ class PanitiaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $item= new Panitia;
+        $item->nama=$request['nama'];
+        $item->jabatan=$request['jabatan'];
+        $item->no_hp=$request['no_hp'];
+        $item->save();
+
+        return redirect()->back()->with('panitia', 'Data Berhasil Tersimpan');
     }
 
     /**
@@ -37,7 +43,13 @@ class PanitiaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $item = new Panitia;
+        $item->nama = $request['nama'];
+        $item->jabatan = $request['jabatan'];
+        $item->no_hp = $request['no_hp'];
+        $item->save();
+
+        return redirect('panitia');
     }
 
     /**
@@ -48,7 +60,8 @@ class PanitiaController extends Controller
      */
     public function show(Panitia $panitia)
     {
-        //
+        $item = Panitia::paginate(10);
+        return view('panitia.show', ['panitias' => $item]);
     }
 
     /**
@@ -59,7 +72,8 @@ class PanitiaController extends Controller
      */
     public function edit(Panitia $panitia)
     {
-        //
+        $item = Panitia::find($id);
+    return view('panitia.edit',['panitias' =>$item]);
     }
 
     /**
@@ -71,7 +85,13 @@ class PanitiaController extends Controller
      */
     public function update(Request $request, Panitia $panitia)
     {
-        //
+        $item = panitia::find($id);
+        $item->nama = $request['nama'];
+        $item->jabatan = $request['jabatan'];
+        $item->no_hp = $request['no_hp'];
+        $item->update();
+
+        return redirect('/panitia/show');
     }
 
     /**
@@ -82,6 +102,9 @@ class PanitiaController extends Controller
      */
     public function destroy(Panitia $panitia)
     {
-        //
+        $item = Panitia::where('id',$id);
+        $item->delete();
+
+        return redirect()->back();
     }
 }

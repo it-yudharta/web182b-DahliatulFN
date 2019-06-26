@@ -28,3 +28,9 @@ Route::get('/peserta/{id}/update', 'PesertaController@update');
 Route::get('/peserta/{id}/hapus', 'PesertaController@destroy');
 
 Route::get('/panitia', 'PanitiaController@index');
+Route::post('/panitia/create', 'PanitiaController@create');
+Route::get('/panitia/show', 'PanitiaController@show');
+Route::get('/peserta/store', 'PanitiaController@store');
+Route::get('/peserta/{id}/edit', 'PanitiaController@edit');
+Route::get('/peserta/{id}/update', 'PanitiaController@update');
+Route::get('/peserta/{id}/hapus', 'PanitiaController@destroy');
